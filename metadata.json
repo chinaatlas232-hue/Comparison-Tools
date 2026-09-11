@@ -1,0 +1,6 @@
+{
+  "name": "أداة مقارنة الملفات وتحديد الفروقات",
+  "description": "أداة ذكية لمقارنة ملفات Excel و CSV وتحديد الفروقات في الكود ورقم الهاتف والعنوان مع لوحة إحصائيات وتصدير التقارير.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

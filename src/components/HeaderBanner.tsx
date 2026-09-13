@@ -45,7 +45,7 @@ export const HeaderBanner: React.FC<HeaderBannerProps> = ({
             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold rounded-lg bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white shadow-xs transition-colors cursor-pointer"
           >
             <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-            <span>تجربة بيانات نموذجية (14,510 سجل)</span>
+            <span>تجربة بيانات نموذجية</span>
           </button>
 
           {hasData && (

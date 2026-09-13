@@ -4,9 +4,41 @@ import { ComparisonRow, ComparisonStats, FileData } from '../types';
 /**
  * Parse an Excel or CSV file from ArrayBuffer
  */
+const ALLOWED_EXTENSIONS = ['.xlsx', '.xls', '.csv'];
+const MAX_FILE_SIZE = 25 * 1024 * 1024;
+
 export async function parseSpreadsheet(file: File): Promise<FileData> {
-  const arrayBuffer = await file.arrayBuffer();
-  const workbook = XLSX.read(arrayBuffer, { type: 'array', cellDates: true });
+  if (!file) {
+    throw new Error('لم يتم اختيار أي ملف.');
+  }
+
+  const lowerName = file.name.toLowerCase();
+  const hasValidExt = ALLOWED_EXTENSIONS.some((ext) => lowerName.endsWith(ext));
+  if (!hasValidExt) {
+    throw new Error('صيغة الملف غير مدعومة. يرجى رفع ملف Excel أو CSV فقط.');
+  }
+
+  if (file.size === 0) {
+    throw new Error('الملف فارغ. يرجى اختيار ملف يحتوي على بيانات.');
+  }
+
+  if (file.size > MAX_FILE_SIZE) {
+    throw new Error('حجم الملف أكبر من 25 ميجابايت. يرجى رفع ملف أصغر.');
+  }
+
+  let arrayBuffer: ArrayBuffer;
+  try {
+    arrayBuffer = await file.arrayBuffer();
+  } catch {
+    throw new Error('تعذر قراءة الملف من الجهاز. حاول مرة أخرى.');
+  }
+
+  let workbook: XLSX.WorkBook;
+  try {
+    workbook = XLSX.read(arrayBuffer, { type: 'array', cellDates: true });
+  } catch {
+    throw new Error('تعذر تحليل الملف. تأكد أنه ملف Excel أو CSV صالح وغير تالف.');
+  }
   
   if (!workbook.SheetNames || workbook.SheetNames.length === 0) {
     throw new Error('الملف لا يحتوي على أي أوراق عمل (Sheets).');

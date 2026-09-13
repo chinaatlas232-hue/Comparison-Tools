@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, CheckCircle2, AlertTriangle, UserPlus, UserMinus, ArrowRight, KeyRound } from 'lucide-react';
+import { X, CheckCircle2, AlertTriangle, UserPlus, UserMinus, KeyRound } from 'lucide-react';
 import { ComparisonRow, ComparisonConfig } from '../types';
 
 interface RecordDetailsModalProps {
@@ -107,7 +107,6 @@ export const RecordDetailsModal: React.FC<RecordDetailsModalProps> = ({
               <tbody className="divide-y divide-slate-100 bg-white">
                 {allFieldKeys.map((field) => {
                   const isKey = field === config.keyField;
-                  const isCompared = config.fieldsToCompare.includes(field);
                   const diff = record.diffs[field];
                   const isChanged = diff?.isDifferent;
 

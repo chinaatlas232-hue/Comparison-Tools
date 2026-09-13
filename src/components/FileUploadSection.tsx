@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { UploadCloud, FileSpreadsheet, CheckCircle2, Trash2, ArrowRightLeft, RefreshCw, FileText } from 'lucide-react';
+import { UploadCloud, FileSpreadsheet, CheckCircle2, Trash2, ArrowRightLeft, RefreshCw } from 'lucide-react';
 import { FileData } from '../types';
 
 interface FileUploadSectionProps {
@@ -36,6 +36,7 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
 
   const handleDrop = (e: React.DragEvent, type: 'old' | 'new') => {
     e.preventDefault();
+    if (isLoading) return;
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const file = e.dataTransfer.files[0];
       if (type === 'old') onOldFileUpload(file);
@@ -57,6 +58,7 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
         type="file"
         accept=".xlsx, .xls, .csv"
         className="hidden"
+        disabled={isLoading}
         onChange={(e) => {
           if (e.target.files && e.target.files[0]) {
             onOldFileUpload(e.target.files[0]);
@@ -69,6 +71,7 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
         type="file"
         accept=".xlsx, .xls, .csv"
         className="hidden"
+        disabled={isLoading}
         onChange={(e) => {
           if (e.target.files && e.target.files[0]) {
             onNewFileUpload(e.target.files[0]);
@@ -112,6 +115,12 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
           )}
         </div>
       </div>
+
+      {isLoading && (
+        <div className="mb-3 px-3 py-2 rounded-lg bg-blue-50 border border-blue-200 text-blue-800 text-xs font-semibold">
+          جاري قراءة الملف، يرجى الانتظار...
+        </div>
+      )}
 
       {/* Two File Cards side by side */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 flex-1">
@@ -176,8 +185,10 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
             <div
               onDrop={(e) => handleDrop(e, 'old')}
               onDragOver={handleDragOver}
-              onClick={() => oldInputRef.current?.click()}
-              className="border-2 border-dashed border-slate-200 hover:border-blue-400 hover:bg-blue-50/20 rounded-lg p-3 text-center cursor-pointer transition-colors"
+              onClick={() => {
+                if (!isLoading) oldInputRef.current?.click();
+              }}
+              className={`border-2 border-dashed border-slate-200 hover:border-blue-400 hover:bg-blue-50/20 rounded-lg p-3 text-center transition-colors ${isLoading ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
             >
               <UploadCloud className="w-5 h-5 mx-auto text-slate-400 mb-1" />
               <p className="text-xs font-bold text-blue-600">انقر لرفع الملف الأول</p>
@@ -247,8 +258,10 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
             <div
               onDrop={(e) => handleDrop(e, 'new')}
               onDragOver={handleDragOver}
-              onClick={() => newInputRef.current?.click()}
-              className="border-2 border-dashed border-slate-200 hover:border-blue-400 hover:bg-blue-50/20 rounded-lg p-3 text-center cursor-pointer transition-colors"
+              onClick={() => {
+                if (!isLoading) newInputRef.current?.click();
+              }}
+              className={`border-2 border-dashed border-slate-200 hover:border-blue-400 hover:bg-blue-50/20 rounded-lg p-3 text-center transition-colors ${isLoading ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
             >
               <UploadCloud className="w-5 h-5 mx-auto text-slate-400 mb-1" />
               <p className="text-xs font-bold text-blue-600">انقر لرفع الملف الثاني</p>

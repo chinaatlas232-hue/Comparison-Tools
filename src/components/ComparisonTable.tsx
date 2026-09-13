@@ -83,7 +83,11 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
   }, [filteredRows, currentPage, pageSize]);
 
   const handleExportExcel = () => {
-    exportComparisonToExcel(rows, stats, config.keyField, config.fieldsToCompare);
+    try {
+      exportComparisonToExcel(rows, stats, config.keyField, config.fieldsToCompare);
+    } catch {
+      window.alert('تعذر تصدير ملف Excel. حاول مرة أخرى.');
+    }
   };
 
   const handlePrint = () => {

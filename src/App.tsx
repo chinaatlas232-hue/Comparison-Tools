@@ -75,6 +75,9 @@ export default function App() {
     setErrorMessage(null);
     try {
       const parsed = await parseSpreadsheet(file);
+      if (!parsed.columns.length) {
+        throw new Error('لم يتم العثور على أعمدة صالحة في الملف الأول.');
+      }
       setOldFile(parsed);
 
       // Auto-detect key column if not selected or invalid
@@ -109,6 +112,9 @@ export default function App() {
     setErrorMessage(null);
     try {
       const parsed = await parseSpreadsheet(file);
+      if (!parsed.columns.length) {
+        throw new Error('لم يتم العثور على أعمدة صالحة في الملف الثاني.');
+      }
       setNewFile(parsed);
     } catch (err: any) {
       setErrorMessage(err.message || 'تعذر قراءة ملف Excel أو CSV. يرجى التأكد من سلامة الملف.');
@@ -139,10 +145,13 @@ export default function App() {
     return Array.from(colsSet);
   }, [oldFile, newFile]);
 
-  // Run comparison
   const comparisonResult = useMemo(() => {
     if (!oldFile || !newFile || !config.keyField) return null;
-    return compareDatasets(oldFile.rows, newFile.rows, config);
+    try {
+      return compareDatasets(oldFile.rows, newFile.rows, config);
+    } catch {
+      return null;
+    }
   }, [oldFile, newFile, config]);
 
   return (

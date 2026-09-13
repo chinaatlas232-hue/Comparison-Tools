@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle2, AlertTriangle, UserPlus, UserMinus, KeyRound, Filter } from 'lucide-react';
+import { CheckCircle2, AlertTriangle, UserPlus, UserMinus, KeyRound } from 'lucide-react';
 import { ComparisonStats } from '../types';
 
 interface DashboardStatsProps {

@@ -1,4 +1,4 @@
-// Generate exactly 14,510 demo records to match the exact counts in the user's interface
+// Generate a compact demo dataset so the UI stays responsive
 export function generateSampleDatasets(): {
   oldData: Record<string, any>[];
   newData: Record<string, any>[];
@@ -96,7 +96,7 @@ export function generateSampleDatasets(): {
     }
   ];
 
-  const totalTarget = 14510;
+  const totalTarget = 120;
   const oldData: Record<string, any>[] = [];
   const newData: Record<string, any>[] = [];
 
@@ -128,7 +128,7 @@ export function generateSampleDatasets(): {
     "الأنبار - الرمادي", "المثنى - السماوة", "ذي قار - الناصرية", "كركوك"
   ];
 
-  // Fill up to 14,510 with identical records
+  // Fill remaining demo rows as identical records
   for (let i = baseRows.length; i < totalTarget; i++) {
     const code = `C${10000 + i}`;
     const phone = `96477${String(1000000 + i)}`;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileSpreadsheet, Sparkles, RotateCcw, CheckCircle2 } from 'lucide-react';
+import { FileSpreadsheet, Sparkles, RotateCcw } from 'lucide-react';
 
 interface HeaderProps {
   onLoadDemo: () => void;

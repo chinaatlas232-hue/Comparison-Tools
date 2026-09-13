@@ -1,5 +1,5 @@
 import React from 'react';
-import { KeyRound, Columns, SlidersHorizontal, CheckCircle2, Check, Sparkles } from 'lucide-react';
+import { KeyRound, SlidersHorizontal, CheckCircle2, Check } from 'lucide-react';
 import { ComparisonConfig } from '../types';
 
 interface FieldMappingPanelProps {

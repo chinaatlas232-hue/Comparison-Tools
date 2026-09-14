@@ -155,12 +155,12 @@ export default function App() {
   }, [oldFile, newFile, config]);
 
   return (
-    <div className="min-h-screen bg-slate-100 flex flex-col font-['Tajawal',sans-serif] text-slate-900" dir="rtl">
+    <div className="min-h-screen bg-transparent flex flex-col font-['Tajawal',sans-serif] text-slate-800" dir="rtl">
       {/* Top Banner & Files Section */}
       <header className="max-w-[1600px] mx-auto px-4 sm:px-6 pt-5 w-full">
         {/* Error Notification */}
         {errorMessage && (
-          <div className="mb-4 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 flex items-center justify-between text-xs sm:text-sm">
+          <div className="mb-4 p-3.5 rounded-xl bg-rose-100/70 border border-rose-200 text-rose-700 flex items-center justify-between text-xs sm:text-sm">
             <div className="flex items-center gap-2">
               <AlertCircle className="w-5 h-5 text-rose-600 shrink-0" />
               <span>{errorMessage}</span>
@@ -214,7 +214,7 @@ export default function App() {
                 onConfigChange={setConfig}
               />
             ) : (
-              <div className="bg-white rounded-2xl border border-slate-200 p-6 text-center text-slate-400">
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-violet-100 p-6 text-center text-slate-400">
                 <p className="text-xs">يرجى رفع الملفات لتحديد المفتاح الأساسي والحقول.</p>
               </div>
             )}
@@ -246,7 +246,7 @@ export default function App() {
                 />
               </>
             ) : (
-              <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center text-slate-400">
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-violet-100 p-12 text-center text-slate-400">
                 <p className="text-sm font-bold text-slate-600 mb-1">
                   لم يتم إجراء المقارنة بعد
                 </p>
@@ -260,7 +260,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 py-3 text-center text-xs text-slate-500">
+      <footer className="bg-white/70 backdrop-blur-sm border-t border-violet-100 py-3 text-center text-xs text-slate-500">
         <div className="max-w-[1600px] mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <span>أداة مقارنة الملفات وتحديد الفروقات التلقائية — معالجة فورية ومحلية آمنة 100%</span>
           <span className="flex items-center gap-1 text-[11px] text-slate-400">

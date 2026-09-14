@@ -51,9 +51,9 @@ export const FieldMappingPanel: React.FC<FieldMappingPanelProps> = ({
   return (
     <aside className="space-y-4 w-full">
       {/* 2.1 Primary Key Selection Card */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-2xs p-4 sm:p-5">
+      <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-violet-100 shadow-sm p-4 sm:p-5">
         <div className="flex items-center gap-2 mb-1">
-          <div className="w-6 h-6 rounded-full bg-blue-50 text-blue-700 text-xs font-black flex items-center justify-center border border-blue-100">
+          <div className="w-6 h-6 rounded-full bg-violet-100 text-violet-700 text-xs font-black flex items-center justify-center border border-violet-200">
             2
           </div>
           <h3 className="text-sm sm:text-base font-bold text-slate-900">
@@ -75,8 +75,8 @@ export const FieldMappingPanel: React.FC<FieldMappingPanelProps> = ({
                 onClick={() => handleKeySelect(col)}
                 className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                   isSelected
-                    ? 'bg-blue-600 text-white shadow-xs'
-                    : 'bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200/80'
+                    ? 'bg-violet-400 text-white shadow-xs'
+                    : 'bg-violet-50 text-slate-700 hover:bg-violet-100 border border-violet-100'
                 }`}
               >
                 <div className="flex items-center gap-2 truncate">
@@ -100,10 +100,10 @@ export const FieldMappingPanel: React.FC<FieldMappingPanelProps> = ({
       </div>
 
       {/* 2.2 Fields to Compare Card */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-2xs p-4 sm:p-5">
+      <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-violet-100 shadow-sm p-4 sm:p-5">
         <div className="flex items-center justify-between gap-2 mb-1">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-blue-50 text-blue-700 text-xs font-black flex items-center justify-center border border-blue-100">
+            <div className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 text-xs font-black flex items-center justify-center border border-emerald-200">
               ✓
             </div>
             <h3 className="text-sm sm:text-base font-bold text-slate-900">
@@ -124,7 +124,7 @@ export const FieldMappingPanel: React.FC<FieldMappingPanelProps> = ({
             <button
               type="button"
               onClick={selectAllFields}
-              className="text-blue-600 hover:text-blue-800 font-bold hover:underline text-[11px]"
+              className="text-violet-600 hover:text-violet-800 font-bold hover:underline text-[11px]"
             >
               تحديد الكل
             </button>
@@ -150,10 +150,10 @@ export const FieldMappingPanel: React.FC<FieldMappingPanelProps> = ({
                 key={col}
                 className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium cursor-pointer transition-all border ${
                   isChecked
-                    ? 'bg-emerald-50/60 border-emerald-300 text-emerald-950 font-bold shadow-2xs'
+                    ? 'bg-emerald-50 border-emerald-200 text-emerald-900 font-bold shadow-sm'
                     : isKey
-                    ? 'bg-slate-50/50 border-slate-200 text-slate-400 cursor-not-allowed opacity-60'
-                    : 'bg-slate-50/50 border-slate-200 text-slate-700 hover:bg-slate-100'
+                    ? 'bg-violet-50/40 border-violet-100 text-slate-400 cursor-not-allowed opacity-60'
+                    : 'bg-violet-50/40 border-violet-100 text-slate-700 hover:bg-violet-50'
                 }`}
               >
                 <div className="flex items-center gap-2.5 truncate">
@@ -162,7 +162,7 @@ export const FieldMappingPanel: React.FC<FieldMappingPanelProps> = ({
                     checked={isChecked}
                     disabled={isKey}
                     onChange={() => toggleField(col)}
-                    className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300 cursor-pointer"
+                    className="w-4 h-4 rounded text-emerald-500 focus:ring-emerald-400 border-violet-200 cursor-pointer"
                   />
                   <span className="truncate">{col}</span>
                 </div>
@@ -174,7 +174,7 @@ export const FieldMappingPanel: React.FC<FieldMappingPanelProps> = ({
                   </span>
                 )}
                 {isKey && (
-                  <span className="shrink-0 text-[10px] bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded">
+                  <span className="shrink-0 text-[10px] bg-violet-100 text-violet-700 px-1.5 py-0.5 rounded">
                     مفتاح ربط
                   </span>
                 )}
@@ -185,9 +185,9 @@ export const FieldMappingPanel: React.FC<FieldMappingPanelProps> = ({
       </div>
 
       {/* 2.3 Options & Normalization Card */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-2xs p-4 sm:p-5">
+      <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-violet-100 shadow-sm p-4 sm:p-5">
         <div className="flex items-center gap-2 mb-2">
-          <SlidersHorizontal className="w-4 h-4 text-blue-600" />
+          <SlidersHorizontal className="w-4 h-4 text-violet-500" />
           <h4 className="text-xs sm:text-sm font-bold text-slate-800">
             خيارات المعالجة الذكية
           </h4>
@@ -201,7 +201,7 @@ export const FieldMappingPanel: React.FC<FieldMappingPanelProps> = ({
               onChange={(e) =>
                 onConfigChange((prev) => ({ ...prev, normalizePhones: e.target.checked }))
               }
-              className="w-3.5 h-3.5 rounded text-blue-600 focus:ring-blue-500 border-slate-300"
+              className="w-3.5 h-3.5 rounded text-violet-500 focus:ring-violet-400 border-violet-200"
             />
             <span>توحيد صياغة أرقام الهواتف (07... / 964...)</span>
           </label>
@@ -213,7 +213,7 @@ export const FieldMappingPanel: React.FC<FieldMappingPanelProps> = ({
               onChange={(e) =>
                 onConfigChange((prev) => ({ ...prev, normalizeArabic: e.target.checked }))
               }
-              className="w-3.5 h-3.5 rounded text-blue-600 focus:ring-blue-500 border-slate-300"
+              className="w-3.5 h-3.5 rounded text-violet-500 focus:ring-violet-400 border-violet-200"
             />
             <span>تطبيع الحروف العربية (أ، إ، آ، ة، ى)</span>
           </label>
@@ -225,7 +225,7 @@ export const FieldMappingPanel: React.FC<FieldMappingPanelProps> = ({
               onChange={(e) =>
                 onConfigChange((prev) => ({ ...prev, ignoreWhitespace: e.target.checked }))
               }
-              className="w-3.5 h-3.5 rounded text-blue-600 focus:ring-blue-500 border-slate-300"
+              className="w-3.5 h-3.5 rounded text-violet-500 focus:ring-violet-400 border-violet-200"
             />
             <span>تجاهل المسافات الزائدة في البداية والنهاية</span>
           </label>

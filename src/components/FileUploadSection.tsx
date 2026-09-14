@@ -51,7 +51,7 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
   const bothFilesLoaded = Boolean(oldFile && newFile);
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 shadow-2xs p-4 sm:p-5 flex flex-col justify-between h-full">
+    <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-violet-100 shadow-sm p-4 sm:p-5 flex flex-col justify-between h-full">
       {/* Hidden File Inputs */}
       <input
         ref={oldInputRef}
@@ -81,9 +81,9 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
       />
 
       {/* Top Header */}
-      <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+      <div className="flex items-center justify-between pb-3 mb-3 border-b border-violet-100">
         <div className="flex items-center gap-2">
-          <span className="w-6 h-6 rounded-full bg-blue-50 text-blue-700 text-xs font-black flex items-center justify-center border border-blue-100">
+          <span className="w-6 h-6 rounded-full bg-violet-100 text-violet-700 text-xs font-black flex items-center justify-center border border-violet-200">
             1
           </span>
           <h2 className="text-sm sm:text-base font-bold text-slate-900">
@@ -93,12 +93,12 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
 
         <div className="flex items-center gap-2">
           {bothFilesLoaded ? (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700 border border-emerald-200">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
               <span>الملفان جاهزان</span>
             </span>
           ) : (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-700 border border-amber-200">
               <span>بانتظار الملفات</span>
             </span>
           )}
@@ -108,7 +108,7 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
               type="button"
               onClick={onSwapFiles}
               title="تبديل موقع الملفين (القديم ⇄ الجديد)"
-              className="p-1.5 rounded-lg text-slate-500 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+              className="p-1.5 rounded-lg text-violet-500 hover:text-violet-700 hover:bg-violet-50 transition-colors"
             >
               <ArrowRightLeft className="w-3.5 h-3.5" />
             </button>
@@ -117,7 +117,7 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
       </div>
 
       {isLoading && (
-        <div className="mb-3 px-3 py-2 rounded-lg bg-blue-50 border border-blue-200 text-blue-800 text-xs font-semibold">
+        <div className="mb-3 px-3 py-2 rounded-lg bg-violet-50 border border-violet-200 text-violet-800 text-xs font-semibold">
           جاري قراءة الملف، يرجى الانتظار...
         </div>
       )}
@@ -125,7 +125,7 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
       {/* Two File Cards side by side */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 flex-1">
         {/* File 1: Old / Reference */}
-        <div className="flex flex-col justify-between rounded-xl border border-slate-200 bg-slate-50/50 p-3.5">
+        <div className="flex flex-col justify-between rounded-xl border border-emerald-100 bg-emerald-50/40 p-3.5">
           <div className="mb-2">
             <span className="block text-xs font-bold text-slate-800 mb-0.5">
               الملف الأول (المرجع / السابق)
@@ -136,10 +136,10 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
           </div>
 
           {oldFile ? (
-            <div className="bg-white rounded-lg border border-slate-200 p-2.5 shadow-2xs space-y-2">
+            <div className="bg-white/90 rounded-lg border border-emerald-100 p-2.5 shadow-sm space-y-2">
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 min-w-0">
-                  <div className="w-7 h-7 rounded bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100">
+                  <div className="w-7 h-7 rounded bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-200">
                     <FileSpreadsheet className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
@@ -156,7 +156,7 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
                   <button
                     type="button"
                     onClick={() => oldInputRef.current?.click()}
-                    className="p-1 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded text-[11px] font-medium"
+                    className="p-1 text-slate-400 hover:text-violet-600 hover:bg-violet-50 rounded text-[11px] font-medium"
                     title="تغيير الملف"
                   >
                     <RefreshCw className="w-3.5 h-3.5" />
@@ -164,7 +164,7 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
                   <button
                     type="button"
                     onClick={onRemoveOldFile}
-                    className="p-1 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded text-[11px]"
+                    className="p-1 text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded text-[11px]"
                     title="حذف الملف"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
@@ -188,17 +188,17 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
               onClick={() => {
                 if (!isLoading) oldInputRef.current?.click();
               }}
-              className={`border-2 border-dashed border-slate-200 hover:border-blue-400 hover:bg-blue-50/20 rounded-lg p-3 text-center transition-colors ${isLoading ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
+              className={`border-2 border-dashed border-emerald-200 hover:border-emerald-400 hover:bg-emerald-50/60 rounded-lg p-3 text-center transition-colors ${isLoading ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
             >
-              <UploadCloud className="w-5 h-5 mx-auto text-slate-400 mb-1" />
-              <p className="text-xs font-bold text-blue-600">انقر لرفع الملف الأول</p>
+              <UploadCloud className="w-5 h-5 mx-auto text-emerald-400 mb-1" />
+              <p className="text-xs font-bold text-emerald-600">انقر لرفع الملف الأول</p>
               <p className="text-[10px] text-slate-400">أو اسحب ملف Excel / CSV هنا</p>
             </div>
           )}
         </div>
 
         {/* File 2: New / Updated */}
-        <div className="flex flex-col justify-between rounded-xl border border-slate-200 bg-slate-50/50 p-3.5">
+        <div className="flex flex-col justify-between rounded-xl border border-sky-100 bg-sky-50/50 p-3.5">
           <div className="mb-2">
             <span className="block text-xs font-bold text-slate-800 mb-0.5">
               الملف الثاني (المحدث / الجديد)
@@ -209,10 +209,10 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
           </div>
 
           {newFile ? (
-            <div className="bg-white rounded-lg border border-slate-200 p-2.5 shadow-2xs space-y-2">
+            <div className="bg-white/90 rounded-lg border border-sky-100 p-2.5 shadow-sm space-y-2">
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 min-w-0">
-                  <div className="w-7 h-7 rounded bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 border border-blue-100">
+                  <div className="w-7 h-7 rounded bg-sky-100 text-sky-600 flex items-center justify-center shrink-0 border border-sky-200">
                     <FileSpreadsheet className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
@@ -229,7 +229,7 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
                   <button
                     type="button"
                     onClick={() => newInputRef.current?.click()}
-                    className="p-1 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded text-[11px] font-medium"
+                    className="p-1 text-slate-400 hover:text-sky-600 hover:bg-sky-50 rounded text-[11px] font-medium"
                     title="تغيير الملف"
                   >
                     <RefreshCw className="w-3.5 h-3.5" />
@@ -237,7 +237,7 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
                   <button
                     type="button"
                     onClick={onRemoveNewFile}
-                    className="p-1 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded text-[11px]"
+                    className="p-1 text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded text-[11px]"
                     title="حذف الملف"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
@@ -261,10 +261,10 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
               onClick={() => {
                 if (!isLoading) newInputRef.current?.click();
               }}
-              className={`border-2 border-dashed border-slate-200 hover:border-blue-400 hover:bg-blue-50/20 rounded-lg p-3 text-center transition-colors ${isLoading ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
+              className={`border-2 border-dashed border-sky-200 hover:border-sky-400 hover:bg-sky-50/70 rounded-lg p-3 text-center transition-colors ${isLoading ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
             >
-              <UploadCloud className="w-5 h-5 mx-auto text-slate-400 mb-1" />
-              <p className="text-xs font-bold text-blue-600">انقر لرفع الملف الثاني</p>
+              <UploadCloud className="w-5 h-5 mx-auto text-sky-400 mb-1" />
+              <p className="text-xs font-bold text-sky-600">انقر لرفع الملف الثاني</p>
               <p className="text-[10px] text-slate-400">أو اسحب ملف Excel / CSV هنا</p>
             </div>
           )}

@@ -1,1 +1,26 @@
 @import "tailwindcss";
+
+:root {
+  --pastel-bg: #f4f1fb;
+  --pastel-ink: #3d3a55;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(1200px 500px at 100% -10%, rgba(196, 181, 253, 0.35), transparent 55%),
+    radial-gradient(900px 420px at -10% 0%, rgba(167, 243, 208, 0.28), transparent 50%),
+    radial-gradient(800px 380px at 80% 100%, rgba(253, 224, 171, 0.22), transparent 50%),
+    var(--pastel-bg);
+  color: var(--pastel-ink);
+}
+
+::selection {
+  background: #c4b5fd;
+  color: #312e81;
+}

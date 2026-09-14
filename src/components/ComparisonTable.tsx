@@ -98,29 +98,29 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
     switch (status) {
       case 'identical':
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-100">
             <CheckCircle2 className="w-3 h-3 text-emerald-600" />
             مطابق
           </span>
         );
       case 'modified':
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold bg-amber-50 text-amber-800 border border-amber-300">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold bg-amber-50 text-amber-700 border border-amber-200">
             <AlertTriangle className="w-3 h-3 text-amber-600" />
             معدل ({diffCount})
           </span>
         );
       case 'added':
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200">
-            <UserPlus className="w-3 h-3 text-blue-600" />
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold bg-sky-50 text-sky-700 border border-sky-200">
+            <UserPlus className="w-3 h-3 text-sky-500" />
             مضاف
           </span>
         );
       case 'deleted':
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200">
-            <UserMinus className="w-3 h-3 text-rose-600" />
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold bg-rose-50 text-rose-600 border border-rose-100">
+            <UserMinus className="w-3 h-3 text-rose-400" />
             محذوف
           </span>
         );
@@ -137,9 +137,9 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
   }, [config.fieldsToCompare]);
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 shadow-2xs overflow-hidden">
+    <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-violet-100 shadow-sm overflow-hidden">
       {/* Top Toolbar */}
-      <div className="p-4 sm:p-5 border-b border-slate-200 space-y-3.5">
+      <div className="p-4 sm:p-5 border-b border-violet-100 space-y-3.5">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
           {/* Status info & Export Buttons */}
           <div className="flex flex-wrap items-center gap-2">
@@ -147,7 +147,7 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
               id="btn-export-excel"
               type="button"
               onClick={handleExportExcel}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 rounded-lg shadow-2xs transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold text-white bg-emerald-400 hover:bg-emerald-500 active:bg-emerald-600 rounded-lg shadow-sm transition-colors cursor-pointer"
             >
               <FileSpreadsheet className="w-4 h-4" />
               <span>تصدير Excel</span>
@@ -157,7 +157,7 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
               id="btn-print-report"
               type="button"
               onClick={handlePrint}
-              className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 rounded-lg shadow-2xs transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-bold text-violet-700 bg-white hover:bg-violet-50 border border-violet-200 rounded-lg shadow-sm transition-colors cursor-pointer"
             >
               <Printer className="w-3.5 h-3.5 text-slate-500" />
               <span>طباعة</span>
@@ -176,7 +176,7 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="بحث بالكود، الهاتف، العنوان..."
-              className="w-full pl-3 pr-8 py-1.5 rounded-lg text-xs border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full pl-3 pr-8 py-1.5 rounded-lg text-xs border border-violet-100 bg-violet-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-violet-300 focus:border-transparent transition-all"
             />
             <Search className="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-2 pointer-events-none" />
             {searchQuery && (
@@ -192,15 +192,15 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
         </div>
 
         {/* Status Filter Tabs */}
-        <div className="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-slate-100">
+        <div className="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-violet-50">
           <div className="flex flex-wrap items-center gap-1.5">
             <button
               type="button"
               onClick={() => onStatusFilterChange('all')}
               className={`px-3 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
                 activeStatusFilter === 'all'
-                  ? 'bg-slate-900 text-white shadow-xs'
-                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                  ? 'bg-violet-400 text-white shadow-xs'
+                  : 'bg-violet-50 hover:bg-violet-100 text-violet-800'
               }`}
             >
               الكل ({stats.totalUniqueKeys.toLocaleString()})
@@ -211,7 +211,7 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
               onClick={() => onStatusFilterChange('modified')}
               className={`px-3 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
                 activeStatusFilter === 'modified'
-                  ? 'bg-amber-500 text-white shadow-xs'
+                  ? 'bg-amber-300 text-amber-950 shadow-xs'
                   : 'bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200'
               }`}
             >
@@ -223,8 +223,8 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
               onClick={() => onStatusFilterChange('added')}
               className={`px-3 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
                 activeStatusFilter === 'added'
-                  ? 'bg-blue-600 text-white shadow-xs'
-                  : 'bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200'
+                  ? 'bg-sky-300 text-sky-950 shadow-xs'
+                  : 'bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200'
               }`}
             >
               المضافة ({stats.addedCount.toLocaleString()})
@@ -235,7 +235,7 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
               onClick={() => onStatusFilterChange('deleted')}
               className={`px-3 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
                 activeStatusFilter === 'deleted'
-                  ? 'bg-rose-600 text-white shadow-xs'
+                  ? 'bg-rose-300 text-rose-950 shadow-xs'
                   : 'bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200'
               }`}
             >
@@ -247,7 +247,7 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
               onClick={() => onStatusFilterChange('identical')}
               className={`px-3 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
                 activeStatusFilter === 'identical'
-                  ? 'bg-emerald-600 text-white shadow-xs'
+                  ? 'bg-emerald-300 text-emerald-950 shadow-xs'
                   : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200'
               }`}
             >
@@ -256,7 +256,7 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
           </div>
 
           {activeFieldFilter && (
-            <div className="flex items-center gap-1.5 text-xs bg-amber-50 text-amber-800 border border-amber-300 px-2.5 py-0.5 rounded-lg">
+            <div className="flex items-center gap-1.5 text-xs bg-amber-50 text-amber-800 border border-amber-200 px-2.5 py-0.5 rounded-lg">
               <Filter className="w-3 h-3 text-amber-600" />
               <span>مفلترة حسب الحقل: <strong>{activeFieldFilter}</strong></span>
               <button
@@ -275,7 +275,7 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
       <div className="overflow-x-auto">
         <table className="w-full text-right text-xs border-collapse">
           <thead>
-            <tr className="bg-slate-50/80 border-b border-slate-200 text-slate-700 font-bold">
+            <tr className="bg-violet-50/70 border-b border-violet-100 text-violet-800 font-bold">
               <th className="py-2.5 px-3.5 whitespace-nowrap">
                 {config.keyField} (المفتاح)
               </th>
@@ -292,7 +292,7 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100 text-slate-800">
+          <tbody className="divide-y divide-violet-50 text-slate-800">
             {paginatedRows.length === 0 ? (
               <tr>
                 <td colSpan={3 + displayColumns.length} className="py-8 text-center text-slate-400">
@@ -310,12 +310,12 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
                     key={row.key}
                     className={`transition-colors ${
                       isModified
-                        ? 'bg-amber-50/40 hover:bg-amber-50/70'
+                        ? 'bg-amber-50/60 hover:bg-amber-50'
                         : isAdded
-                        ? 'bg-blue-50/30 hover:bg-blue-50/60'
+                        ? 'bg-sky-50/50 hover:bg-sky-50'
                         : isDeleted
-                        ? 'bg-rose-50/30 hover:bg-rose-50/60 line-through opacity-80'
-                        : 'hover:bg-slate-50'
+                        ? 'bg-rose-50/50 hover:bg-rose-50 line-through opacity-80'
+                        : 'hover:bg-violet-50/40'
                     }`}
                   >
                     {/* Primary Key */}
@@ -338,7 +338,7 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
                         <td
                           key={col}
                           className={`py-2.5 px-3.5 max-w-[200px] truncate ${
-                            hasChanged ? 'bg-amber-100/50 font-bold text-amber-900' : ''
+                            hasChanged ? 'bg-amber-50 font-bold text-amber-800' : ''
                           }`}
                           title={String(currentVal)}
                         >
@@ -363,7 +363,7 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
                       <button
                         type="button"
                         onClick={() => setSelectedRecord(row)}
-                        className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-violet-700 hover:text-violet-900 bg-violet-50 hover:bg-violet-100 rounded-lg transition-colors cursor-pointer"
                         title="عرض تفاصيل الفروقات والحقول"
                       >
                         <Eye className="w-3.5 h-3.5" />
@@ -379,7 +379,7 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
       </div>
 
       {/* Pagination & Counter Footer */}
-      <div className="p-3.5 bg-slate-50/70 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-600">
+      <div className="p-3.5 bg-violet-50/50 border-t border-violet-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-600">
         <div className="flex items-center gap-3">
           <span>
             إجمالي النتائج <strong className="text-slate-900 font-black">{filteredRows.length.toLocaleString()}</strong> سجل | عرض {pageSize} سجل
@@ -388,7 +388,7 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
           <select
             value={pageSize}
             onChange={(e) => setPageSize(Number(e.target.value))}
-            className="bg-white border border-slate-200 rounded px-2 py-0.5 text-xs text-slate-700 cursor-pointer"
+            className="bg-white border border-violet-100 rounded px-2 py-0.5 text-xs text-slate-700 cursor-pointer"
           >
             <option value={10}>10 لكل صفحة</option>
             <option value={25}>25 لكل صفحة</option>
@@ -403,7 +403,7 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
             type="button"
             disabled={currentPage <= 1}
             onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-            className="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="p-1.5 rounded-lg border border-violet-100 bg-white hover:bg-violet-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             title="الصفحة السابقة"
           >
             <ChevronRight className="w-4 h-4" />
@@ -417,7 +417,7 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({
             type="button"
             disabled={currentPage >= totalPages}
             onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-            className="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="p-1.5 rounded-lg border border-violet-100 bg-white hover:bg-violet-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             title="الصفحة التالية"
           >
             <ChevronLeft className="w-4 h-4" />

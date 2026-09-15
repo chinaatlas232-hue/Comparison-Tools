@@ -1,0 +1,68 @@
+export interface ShipmentRecord {
+  id: string;
+  shipment: string;       // رقم الشحنة (e.g. RA6062)
+  code: string;           // كود العميل (e.g. B1020)
+  name: string;           // اسم العميل
+  guarantor: string;      // الكفيل
+  weight: number;         // الوزن كغ
+  cbm: number;            // حجم الشحنة CBM
+  packages: number;       // عدد الطرود
+  price: number;          // السعر / سعر الكيلو $
+  sales: number;          // إجمالي المبيعات / الديون $
+  phone: string;          // رقم الهاتف 1
+  phone2?: string;        // رقم الهاتف 2
+  address: string;        // عنوان استلام البضاعة
+  city: string;           // المحافظة / المدينة
+  type: string;           // نوع الشحنة (جوي، بحري، بري)
+  status?: 'جاهز للتسليم' | 'تم التسليم' | 'معلق' | 'في الساحة';
+  notes?: string;
+}
+
+export interface CitySummary {
+  index: number;
+  city: string;
+  clientCount: number;
+  packagesCount: number;
+  cbmTotal: number;
+  salesTotal: number;
+  weightTotal: number;
+}
+
+export interface FilterState {
+  shipment: string;
+  guarantor: string;
+  code: string;
+  type: string;
+  city: string;
+  searchQuery: string;
+}
+
+export type ActivePage = 'dashboard' | 'yard_inventory' | 'warehouse_inventory' | 'reports' | 'debt_collection';
+
+export interface PaymentEntry {
+  id: string;
+  amount: number;
+  date: string;
+  driverName: string;
+  paymentMethod: 'نقد' | 'حوالة' | 'زين كاش' | 'شيك' | 'أخرى';
+  notes?: string;
+  receiptNumber?: string;
+}
+
+export type CollectionStatus = 'مكتمل' | 'جزئي' | 'لم يبدأ';
+
+export interface CollectionRecord {
+  id: string;             // Unique identifier (typically shipment.id or `${shipment.shipment}_${shipment.code}`)
+  shipmentCode: string;   // كود الشحنة (e.g. RQ6042)
+  clientCode: string;     // كود العميل (e.g. B201)
+  clientName: string;     // اسم الزبون
+  guarantor: string;      // الكفيل
+  totalAmount: number;    // المبلغ الكلي ($)
+  collectedAmount: number;// المبلغ المستحصل ($)
+  remainingAmount: number;// المبلغ المتبقي ($)
+  status: CollectionStatus;// حالة الاستحصال (مكتمل / جزئي / لم يبدأ)
+  driverName?: string;    // اسم السائق المسؤول عن آخر تحصيل
+  notes?: string;         // ملاحظات
+  lastUpdated?: string;   // تاريخ ووقت آخر حركة
+  payments: PaymentEntry[];
+}

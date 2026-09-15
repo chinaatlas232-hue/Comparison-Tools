@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X, CheckCircle2, AlertTriangle, UserPlus, UserMinus, KeyRound } from 'lucide-react';
 import { ComparisonRow, ComparisonConfig } from '../types';
 
@@ -13,6 +14,14 @@ export const RecordDetailsModal: React.FC<RecordDetailsModalProps> = ({
   config,
   onClose,
 }) => {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
   if (!record) return null;
 
   const getStatusBadge = () => {
@@ -56,8 +65,13 @@ export const RecordDetailsModal: React.FC<RecordDetailsModalProps> = ({
     ])
   );
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-violet-950/30 backdrop-blur-xs">
+  return createPortal(
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-violet-950/30 backdrop-blur-xs"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
       <div className="bg-white w-full max-w-3xl rounded-2xl shadow-2xl border border-violet-100 overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-200">
         {/* Modal Header */}
         <div className="px-6 py-4 bg-gradient-to-l from-violet-200 via-fuchsia-100 to-sky-100 text-violet-950 flex items-center justify-between">
@@ -179,6 +193,7 @@ export const RecordDetailsModal: React.FC<RecordDetailsModalProps> = ({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 };

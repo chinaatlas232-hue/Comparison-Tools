@@ -1,0 +1,15 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Real customer/shipment data must never be committed to the repository
+saved_files/
+
+# Firebase runtime config holds the project API key; commit the example instead
+firebase-applet-config.json
+!firebase-applet-config.example.json
